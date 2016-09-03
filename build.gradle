@@ -1,0 +1,32 @@
+plugins {
+  id 'java'
+  id 'jacoco'                                 // Test coverage
+  id 'info.solidsoft.pitest' version '1.1.4'  // Mutation test coverage
+}
+
+group = 'org.willprice'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile 'pl.pragmatists:JUnitParams:1.0.5'
+    testCompile 'junit:junit:4.12'
+}
+
+jacocoTestReport {
+    // XML test report is used for code coverage reporting
+    reports {
+        xml.enabled true
+    }
+}
+
+pitest {
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+}
